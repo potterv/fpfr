@@ -17,10 +17,10 @@ public class Employer {
     @Column(name= "e_name")
     private String name;
 
-    @OneToOne(cascade={CascadeType.DETACH,CascadeType.MERGE,CascadeType.PERSIST,CascadeType.REFRESH})
-    @JoinColumn(name = "id_n")
+//    @OneToOne(cascade={CascadeType.DETACH,CascadeType.MERGE,CascadeType.PERSIST,CascadeType.REFRESH})
+//    @JoinColumn(name = "id_n")
     @Column(name="n_id")
-    private String notices_id;
+    private int notices_id;
 
     public int getId() {
         return id;
@@ -46,11 +46,11 @@ public class Employer {
         this.name = name;
     }
 
-    public String getNotices_id() {
+    public int getNotices_id() {
         return notices_id;
     }
 
-    public void setNotices_id(String notices_id) {
+    public void setNotices_id(int notices_id) {
         this.notices_id = notices_id;
     }
 
@@ -58,7 +58,7 @@ public class Employer {
 
     }
 
-    public Employer(String regNum, String name, String notices_id) {
+    public Employer(String regNum, String name, int notices_id) {
         this.regNum = regNum;
         this.name = name;
         this.notices_id = notices_id;

@@ -1,6 +1,7 @@
 package ru.pfr.sev.cvp.rest.fpfr.db.entity;
 
 import javax.persistence.*;
+import java.util.List;
 
 @Entity
 @Table(name = "intelligence")
@@ -23,10 +24,10 @@ public class Intelligence {
     @Column(name = "kolzl")
     private int kolzl;
 
-    @OneToMany(cascade={CascadeType.DETACH,CascadeType.MERGE,CascadeType.PERSIST,CascadeType.REFRESH})
-    @JoinColumn(name = "id_e")
+    @ManyToOne(cascade={CascadeType.DETACH,CascadeType.MERGE,CascadeType.PERSIST,CascadeType.REFRESH})
+//    @JoinColumn(name = "id_e")
     @Column(name = "e_id")
-    private int employerId;
+    private List<Employer> employer;
 
     public int getId() {
         return id;
@@ -68,34 +69,12 @@ public class Intelligence {
         this.kolzl = kolzl;
     }
 
-    public int getEmployerId() {
-        return employerId;
-    }
 
-    public void setEmployerId(int employerId) {
-        this.employerId = employerId;
-    }
 
     public Intelligence() {
     }
 
-    public Intelligence(String type, String month, String i_year, int kolzl, int employerId) {
-        this.type = type;
-        this.month = month;
-        this.i_year = i_year;
-        this.kolzl = kolzl;
-        this.employerId = employerId;
-    }
 
-    @Override
-    public String toString() {
-        return "intelligence{" +
-                "id=" + id +
-                ", type='" + type + '\'' +
-                ", month='" + month + '\'' +
-                ", i_year='" + i_year + '\'' +
-                ", kolzl=" + kolzl +
-                ", e_id=" + employerId +
-                '}';
-    }
+
+
 }
