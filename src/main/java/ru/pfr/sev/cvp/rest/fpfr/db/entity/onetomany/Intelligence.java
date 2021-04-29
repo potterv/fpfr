@@ -1,4 +1,6 @@
-package ru.pfr.sev.cvp.rest.fpfr.db.entity;
+package ru.pfr.sev.cvp.rest.fpfr.db.entity.onetomany;
+
+import ru.pfr.sev.cvp.rest.fpfr.db.entity.Employer;
 
 import javax.persistence.*;
 import java.util.List;
@@ -24,10 +26,10 @@ public class Intelligence {
     @Column(name = "kolzl")
     private int kolzl;
 
-    @ManyToOne(cascade={CascadeType.DETACH,CascadeType.MERGE,CascadeType.PERSIST,CascadeType.REFRESH})
-//    @JoinColumn(name = "id_e")
-    @Column(name = "e_id")
-    private List<Employer> employer;
+    @ManyToOne(cascade=CascadeType.ALL)
+    @JoinColumn(name = "e_id")
+//    @Column(name = "e_id")
+    private Employer employer;
 
     public int getId() {
         return id;
@@ -69,12 +71,32 @@ public class Intelligence {
         this.kolzl = kolzl;
     }
 
+    public Employer getEmployer() {
+        return employer;
+    }
 
+    public void setEmployer(Employer employer) {
+        this.employer = employer;
+    }
 
     public Intelligence() {
     }
 
+    public Intelligence(String type, String month, String i_year, int kolzl) {
+        this.type = type;
+        this.month = month;
+        this.i_year = i_year;
+        this.kolzl = kolzl;
+    }
 
-
-
+    @Override
+    public String toString() {
+        return "Intelligence{" +
+                "id=" + id +
+                ", type='" + type + '\'' +
+                ", month='" + month + '\'' +
+                ", i_year='" + i_year + '\'' +
+                ", kolzl=" + kolzl +
+                '}';
+    }
 }

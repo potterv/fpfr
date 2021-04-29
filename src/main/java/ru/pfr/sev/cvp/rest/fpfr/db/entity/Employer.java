@@ -1,6 +1,12 @@
 package ru.pfr.sev.cvp.rest.fpfr.db.entity;
 
+import ru.pfr.sev.cvp.rest.fpfr.db.entity.onetomany.Intelligence;
+import ru.pfr.sev.cvp.rest.fpfr.db.entity.onetoone.Apendix;
+import ru.pfr.sev.cvp.rest.fpfr.db.entity.onetoone.Notices;
+
 import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
 
 
 @Entity
@@ -12,15 +18,22 @@ public class Employer {
     private int id;
 
     @Column(name ="e_regnum")
-    private String regNum;
+    private String regNum; 
 
     @Column(name= "e_name")
     private String name;
 
 //    @OneToOne(cascade={CascadeType.DETACH,CascadeType.MERGE,CascadeType.PERSIST,CascadeType.REFRESH})
-//    @JoinColumn(name = "id_n")
-    @Column(name="n_id")
-    private int notices_id;
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "n_id")
+    private Notices empNotices;
+
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "a_id")
+    private Apendix empApendix;
+
+    @OneToMany(cascade = CascadeType.ALL,mappedBy = "employer")
+    private List<Intelligence> empIntelligence;
 
     public int getId() {
         return id;
@@ -46,22 +59,48 @@ public class Employer {
         this.name = name;
     }
 
-    public int getNotices_id() {
-        return notices_id;
+    public Notices getEmpNotices() {
+        return empNotices;
     }
 
-    public void setNotices_id(int notices_id) {
-        this.notices_id = notices_id;
+    public void setEmpNotices(Notices empNotices) {
+        this.empNotices = empNotices;
     }
 
     public Employer() {
 
     }
 
-    public Employer(String regNum, String name, int notices_id) {
+    public Employer(String regNum, String name) {
+
         this.regNum = regNum;
         this.name = name;
-        this.notices_id = notices_id;
+    }
+
+    public void addIntaligence(Intelligence intelligence){
+        if (empIntelligence==null){
+            empIntelligence = new ArrayList<>();
+        }
+            empIntelligence.add(intelligence);
+            intelligence.setEmployer(this);
+
+
+    }
+
+    public Apendix getEmpApendix() {
+        return empApendix;
+    }
+
+    public void setEmpApendix(Apendix empApendix) {
+        this.empApendix = empApendix;
+    }
+
+    public List<Intelligence> getEmpIntelligence() {
+        return empIntelligence;
+    }
+
+    public void setEmpIntelligence(List<Intelligence> empIntelligence) {
+        this.empIntelligence = empIntelligence;
     }
 
     @Override
@@ -70,7 +109,6 @@ public class Employer {
                 "id=" + id +
                 ", regNum='" + regNum + '\'' +
                 ", name='" + name + '\'' +
-                ", notices_id='" + notices_id + '\'' +
                 '}';
     }
 }

@@ -1,4 +1,4 @@
-package ru.pfr.sev.cvp.rest.fpfr.db.entity;
+package ru.pfr.sev.cvp.rest.fpfr.db.entity.onetoone;
 
 import javax.persistence.*;
 import java.util.Date;
