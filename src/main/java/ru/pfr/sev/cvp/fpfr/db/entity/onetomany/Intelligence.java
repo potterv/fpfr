@@ -1,9 +1,8 @@
-package ru.pfr.sev.cvp.rest.fpfr.db.entity.onetomany;
+package ru.pfr.sev.cvp.fpfr.db.entity.onetomany;
 
-import ru.pfr.sev.cvp.rest.fpfr.db.entity.Employer;
+import ru.pfr.sev.cvp.fpfr.db.entity.Employeer;
 
 import javax.persistence.*;
-import java.util.List;
 
 @Entity
 @Table(name = "intelligence")
@@ -29,7 +28,7 @@ public class Intelligence {
     @ManyToOne(cascade=CascadeType.ALL)
     @JoinColumn(name = "e_id")
 //    @Column(name = "e_id")
-    private Employer employer;
+    private Employeer employeer;
 
     public int getId() {
         return id;
@@ -71,12 +70,12 @@ public class Intelligence {
         this.kolzl = kolzl;
     }
 
-    public Employer getEmployer() {
-        return employer;
+    public Employeer getEmployeer() {
+        return employeer;
     }
 
-    public void setEmployer(Employer employer) {
-        this.employer = employer;
+    public void setEmployeer(Employeer employeer) {
+        this.employeer = employeer;
     }
 
     public Intelligence() {

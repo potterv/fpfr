@@ -1,4 +1,4 @@
-package ru.pfr.sev.cvp.rest.fpfr.db.entity.onetoone;
+package ru.pfr.sev.cvp.fpfr.db.entity.onetoone;
 
 import javax.persistence.*;
 import java.util.Date;
@@ -12,8 +12,8 @@ public class Apendix {
     @GeneratedValue(strategy = GenerationType.IDENTITY, generator="native")
     private int id;
 
-    @Column(name = "reg_num_a")
-    private String regNumApendix;
+//    @Column(name = "reg_num_a")
+//    private String regNumApendix;
 
     @Column(name = "date_fact")
     private Date dateFact;
@@ -35,13 +35,13 @@ public class Apendix {
         this.id = id;
     }
 
-    public String getRegNumApendix() {
-        return regNumApendix;
-    }
-
-    public void setRegNumApendix(String regNumApendix) {
-        this.regNumApendix = regNumApendix;
-    }
+//    public String getRegNumApendix() {
+//        return regNumApendix;
+//    }
+//
+//    public void setRegNumApendix(String regNumApendix) {
+//        this.regNumApendix = regNumApendix;
+//    }
 
     public Date getDateFact() {
         return dateFact;
@@ -78,8 +78,8 @@ public class Apendix {
     public Apendix() {
     }
 
-    public Apendix(String regNumApendix, Date dateFact, Date dateAct, String primechanie, String protockol) {
-        this.regNumApendix = regNumApendix;
+    public Apendix( Date dateFact, Date dateAct, String primechanie, String protockol) {
+//        this.regNumApendix = regNumApendix;
         this.dateFact = dateFact;
         this.dateAct = dateAct;
         this.primechanie = primechanie;
@@ -90,7 +90,7 @@ public class Apendix {
     public String toString() {
         return "Apendix{" +
                 "id=" + id +
-                ", regNumApendix='" + regNumApendix + '\'' +
+//                ", regNumApendix='" + regNumApendix + '\'' +
                 ", dateFact=" + dateFact +
                 ", dateAct=" + dateAct +
                 ", primechanie='" + primechanie + '\'' +

@@ -1,8 +1,8 @@
-package ru.pfr.sev.cvp.rest.fpfr.db.entity;
+package ru.pfr.sev.cvp.fpfr.db.entity;
 
-import ru.pfr.sev.cvp.rest.fpfr.db.entity.onetomany.Intelligence;
-import ru.pfr.sev.cvp.rest.fpfr.db.entity.onetoone.Apendix;
-import ru.pfr.sev.cvp.rest.fpfr.db.entity.onetoone.Notices;
+import ru.pfr.sev.cvp.fpfr.db.entity.onetomany.Intelligence;
+import ru.pfr.sev.cvp.fpfr.db.entity.onetoone.Apendix;
+import ru.pfr.sev.cvp.fpfr.db.entity.onetoone.Notices;
 
 import javax.persistence.*;
 import java.util.ArrayList;
@@ -10,8 +10,8 @@ import java.util.List;
 
 
 @Entity
-@Table(name = "employers")
-public class Employer {
+@Table(name = "employeer")
+public class Employeer {
     @Id
     @Column(name = "id_e")
     @GeneratedValue(strategy = GenerationType.IDENTITY, generator="native")
@@ -32,8 +32,8 @@ public class Employer {
     @JoinColumn(name = "a_id")
     private Apendix empApendix;
 
-    @OneToMany(cascade = CascadeType.ALL,mappedBy = "employer")
-    private List<Intelligence> empIntelligence;
+//    @OneToMany(cascade = CascadeType.ALL,mappedBy = "employeer")
+//    private List<Intelligence> empIntelligence;
 
     public int getId() {
         return id;
@@ -67,25 +67,25 @@ public class Employer {
         this.empNotices = empNotices;
     }
 
-    public Employer() {
+    public Employeer() {
 
     }
 
-    public Employer(String regNum, String name) {
+    public Employeer(String regNum, String name) {
 
         this.regNum = regNum;
         this.name = name;
     }
 
-    public void addIntaligence(Intelligence intelligence){
-        if (empIntelligence==null){
-            empIntelligence = new ArrayList<>();
-        }
-            empIntelligence.add(intelligence);
-            intelligence.setEmployer(this);
-
-
-    }
+//    public void addIntaligence(Intelligence intelligence){
+//        if (empIntelligence==null){
+//            empIntelligence = new ArrayList<>();
+//        }
+//            empIntelligence.add(intelligence);
+//            intelligence.setEmployeer(this);
+//
+//
+//    }
 
     public Apendix getEmpApendix() {
         return empApendix;
@@ -95,13 +95,13 @@ public class Employer {
         this.empApendix = empApendix;
     }
 
-    public List<Intelligence> getEmpIntelligence() {
-        return empIntelligence;
-    }
-
-    public void setEmpIntelligence(List<Intelligence> empIntelligence) {
-        this.empIntelligence = empIntelligence;
-    }
+//    public List<Intelligence> getEmpIntelligence() {
+//        return empIntelligence;
+//    }
+//
+//    public void setEmpIntelligence(List<Intelligence> empIntelligence) {
+//        this.empIntelligence = empIntelligence;
+//    }
 
     @Override
     public String toString() {
