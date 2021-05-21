@@ -32,8 +32,9 @@ public class Employeer {
     @JoinColumn(name = "a_id")
     private Apendix empApendix;
 
-//    @OneToMany(cascade = CascadeType.ALL,mappedBy = "employeer")
-//    private List<Intelligence> empIntelligence;
+    @OneToMany(cascade = CascadeType.ALL)
+    @JoinColumn(name = "e_id")
+    private List<Intelligence> empIntelligence;
 
     public int getId() {
         return id;
@@ -77,15 +78,13 @@ public class Employeer {
         this.name = name;
     }
 
-//    public void addIntaligence(Intelligence intelligence){
-//        if (empIntelligence==null){
-//            empIntelligence = new ArrayList<>();
-//        }
-//            empIntelligence.add(intelligence);
-//            intelligence.setEmployeer(this);
-//
-//
-//    }
+    public void addIntaligence(Intelligence intelligence){
+        if (empIntelligence==null){
+            empIntelligence = new ArrayList<>();
+        }
+            empIntelligence.add(intelligence);
+
+    }
 
     public Apendix getEmpApendix() {
         return empApendix;
@@ -95,13 +94,13 @@ public class Employeer {
         this.empApendix = empApendix;
     }
 
-//    public List<Intelligence> getEmpIntelligence() {
-//        return empIntelligence;
-//    }
-//
-//    public void setEmpIntelligence(List<Intelligence> empIntelligence) {
-//        this.empIntelligence = empIntelligence;
-//    }
+    public List<Intelligence> getEmpIntelligence() {
+        return empIntelligence;
+    }
+
+    public void setEmpIntelligence(List<Intelligence> empIntelligence) {
+        this.empIntelligence = empIntelligence;
+    }
 
     @Override
     public String toString() {

@@ -25,11 +25,6 @@ public class Intelligence {
     @Column(name = "kolzl")
     private int kolzl;
 
-    @ManyToOne(cascade=CascadeType.ALL)
-    @JoinColumn(name = "e_id")
-//    @Column(name = "e_id")
-    private Employeer employeer;
-
     public int getId() {
         return id;
     }
@@ -68,14 +63,6 @@ public class Intelligence {
 
     public void setKolzl(int kolzl) {
         this.kolzl = kolzl;
-    }
-
-    public Employeer getEmployeer() {
-        return employeer;
-    }
-
-    public void setEmployeer(Employeer employeer) {
-        this.employeer = employeer;
     }
 
     public Intelligence() {
