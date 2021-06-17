@@ -25,6 +25,16 @@ public class Intelligence {
     @Column(name = "kolzl")
     private int kolzl;
 
+    private  int e_id;
+     @Column(name = "e_id")
+    public int getE_id() {
+        return e_id;
+    }
+
+    public void setE_id(int e_id) {
+        this.e_id = e_id;
+    }
+
     public int getId() {
         return id;
     }
@@ -75,6 +85,7 @@ public class Intelligence {
         this.kolzl = kolzl;
     }
 
+
     @Override
     public String toString() {
         return "Intelligence{" +
@@ -83,6 +94,7 @@ public class Intelligence {
                 ", month='" + month + '\'' +
                 ", i_year='" + i_year + '\'' +
                 ", kolzl=" + kolzl +
+                ", e_id=" + e_id +
                 '}';
     }
 }
