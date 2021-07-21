@@ -1,7 +1,5 @@
 package ru.pfr.sev.cvp.fpfr.db.entity.onetomany;
 
-import ru.pfr.sev.cvp.fpfr.db.entity.Employeer;
-
 import javax.persistence.*;
 
 @Entity
@@ -25,15 +23,15 @@ public class Intelligence {
     @Column(name = "kolzl")
     private int kolzl;
 
-    private  int e_id;
-     @Column(name = "e_id")
-    public int getE_id() {
-        return e_id;
-    }
-
-    public void setE_id(int e_id) {
-        this.e_id = e_id;
-    }
+//    private  int e_id;
+//     @Column(name = "e_id")
+//    public int getE_id() {
+//        return e_id;
+//    }
+//
+//    public void setE_id(int e_id) {
+//        this.e_id = e_id;
+//    }
 
     public int getId() {
         return id;
@@ -94,7 +92,7 @@ public class Intelligence {
                 ", month='" + month + '\'' +
                 ", i_year='" + i_year + '\'' +
                 ", kolzl=" + kolzl +
-                ", e_id=" + e_id +
+
                 '}';
     }
 }

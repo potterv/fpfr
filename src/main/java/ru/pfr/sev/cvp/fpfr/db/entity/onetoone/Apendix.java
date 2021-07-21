@@ -1,10 +1,11 @@
 package ru.pfr.sev.cvp.fpfr.db.entity.onetoone;
 
 import javax.persistence.*;
-import java.util.Date;
+
+import java.time.LocalDate;
 
 @Entity
-@Table(name = "Apendix")
+@Table(name = "apendix")
 public class Apendix {
 
     @Id
@@ -16,15 +17,15 @@ public class Apendix {
 //    private String regNumApendix;
 
     @Column(name = "date_fact")
-    private Date dateFact;
+    private LocalDate dateFact;
 
     @Column(name = "date_act")
-    private Date dateAct;
+    private LocalDate dateAct;
 
     @Column(name = "primechanie")
     private String primechanie;
 
-    @Column(name = "")
+    @Column(name = "protockol")
     private String protockol;
 
     public int getId() {
@@ -43,19 +44,19 @@ public class Apendix {
 //        this.regNumApendix = regNumApendix;
 //    }
 
-    public Date getDateFact() {
+    public LocalDate getDateFact() {
         return dateFact;
     }
 
-    public void setDateFact(Date dateFact) {
+    public void setDateFact(LocalDate dateFact) {
         this.dateFact = dateFact;
     }
 
-    public Date getDateAct() {
+    public LocalDate getDateAct() {
         return dateAct;
     }
 
-    public void setDateAct(Date dateAct) {
+    public void setDateAct(LocalDate dateAct) {
         this.dateAct = dateAct;
     }
 
@@ -78,8 +79,8 @@ public class Apendix {
     public Apendix() {
     }
 
-    public Apendix( Date dateFact, Date dateAct, String primechanie, String protockol) {
-//        this.regNumApendix = regNumApendix;
+    public Apendix( LocalDate dateFact, LocalDate dateAct, String primechanie, String protockol) {
+//      this.regNumApendix = regNumApendix;
         this.dateFact = dateFact;
         this.dateAct = dateAct;
         this.primechanie = primechanie;

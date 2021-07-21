@@ -10,6 +10,8 @@ import ru.pfr.sev.cvp.fpfr.db.entity.onetoone.Notices;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -70,25 +72,17 @@ public class testCrudDateToEntity {
             session = factory.getCurrentSession();
             Employeer employeer = new Employeer("00000000000","xxxx");
 
-            try {
-                Notices notices = new Notices(new SimpleDateFormat("yyyy-mm-dd").parse("2021-04-16"),
-                        new SimpleDateFormat("yyyy-mm-dd").parse("2021-04-16"),"2021-04-16",
-                        new SimpleDateFormat("yyyy-mm-dd").parse("2021-04-16"));
-                employeer.setEmpNotices(notices);
-            } catch (ParseException e) {
-                e.printStackTrace();
-            }
+            Notices notices = new Notices(LocalDate.parse("2021-04-16"),
+                    LocalDate.parse("2021-04-16"),"2021-04-16",
+                    LocalDate.parse("2021-04-16"));
+            employeer.setEmpNotices(notices);
 
-            try {
-                Apendix apendix = new Apendix(
-                        new SimpleDateFormat("yyyy-mm-dd").parse("2021-04-16"),
-                        new SimpleDateFormat("yyyy-mm-dd").parse("2021-04-16"),
-                        "-",
-                        "-");
-                employeer.setEmpApendix(apendix);
-            } catch (ParseException e) {
-                e.printStackTrace();
-            }
+            Apendix apendix = new Apendix(
+                    LocalDate.parse("2021-04-16"),
+                    LocalDate.parse("2021-04-16"),
+                    "-",
+                    "-");
+            employeer.setEmpApendix(apendix);
 
             session.beginTransaction();
             session.save(employeer);
@@ -115,33 +109,25 @@ public class testCrudDateToEntity {
         Session session = null;
         try {
             session = factory.getCurrentSession();
-            Employeer employeer = new Employeer("00000000005","rrrrr");
+            Employeer employeer = new Employeer("00000000009","ooo pppp");
 
-            try {
-                Notices notices = new Notices(new SimpleDateFormat("yyyy-mm-dd").parse("2021-04-16"),
-                        new SimpleDateFormat("yyyy-mm-dd").parse("2021-04-16"),"2021-04-16",
-                        new SimpleDateFormat("yyyy-mm-dd").parse("2021-04-16"));
-                employeer.setEmpNotices(notices);
-            } catch (ParseException e) {
-                e.printStackTrace();
-            }
+            Notices notices = new Notices(LocalDate.parse("2021-04-16"),
+                    LocalDate.parse("2021-04-16"),"2021-04-16",
+                    LocalDate.parse("2021-04-16"));
+            employeer.setEmpNotices(notices);
 
-            try {
-                Apendix apendix = new Apendix(new SimpleDateFormat("yyyy-mm-dd").parse("2021-04-16"),
-                        new SimpleDateFormat("yyyy-mm-dd").parse("2021-04-16"),
-                        "-",
-                        "-");
-                employeer.setEmpApendix(apendix);
-            } catch (ParseException e) {
-                e.printStackTrace();
-            }
+            Apendix apendix = new Apendix(LocalDate.parse("2021-04-16"),
+                    LocalDate.parse("2021-04-16"),
+                    "-",
+                    "-");
+            employeer.setEmpApendix(apendix);
 
 
 //                Intelligence intelligence = new Intelligence("1","2","3",10);
 //                Intelligence intelligence1 = new Intelligence("4","5","6",12);
 
-//                employeer.addIntaligence(new Intelligence("1","2","3",10));
-//                employeer.addIntaligence(new Intelligence("4","5","6",12));
+                employeer.addIntaligence(new Intelligence("5","1","7",18));
+                employeer.addIntaligence(new Intelligence("7","8","7",14));
 
 
 

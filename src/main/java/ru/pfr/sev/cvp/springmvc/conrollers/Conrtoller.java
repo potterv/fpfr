@@ -2,7 +2,7 @@ package ru.pfr.sev.cvp.springmvc.conrollers;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
-
+@Deprecated
 @Controller
 public class Conrtoller {
 

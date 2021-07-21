@@ -1,7 +1,13 @@
 package ru.pfr.sev.cvp.fpfr.db.entity.onetoone;
 
 import javax.persistence.*;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+
+import java.time.format.DateTimeFormatter;
 import java.util.Date;
+import java.time.LocalDate;
+import java.util.Formatter;
 
 @Entity
 @Table(name = "notices")
@@ -12,13 +18,13 @@ public class Notices {
     @GeneratedValue(strategy = GenerationType.IDENTITY, generator="native")
     private int id;
     @Column(name = "date_n")
-    private Date dateNotices;
+    private LocalDate dateNotices;
     @Column(name = "date_n_transfer")
-    private Date dateNoticesTransfer;
+    private LocalDate dateNoticesTransfer;
     @Column(name = "date_n_in")
     private String dateNoticesIn;
     @Column(name = "control_date")
-    private Date controlDate;
+    private LocalDate controlDate;
 
     public int getId() {
         return id;
@@ -28,19 +34,19 @@ public class Notices {
         this.id = id;
     }
 
-    public Date getDateNotices() {
-        return dateNotices;
+    public LocalDate getDateNotices() throws ParseException {
+       return this.dateNotices;
     }
 
-    public void setDateNotices(Date dateNotices) {
+    public void setDateNotices(LocalDate dateNotices) {
         this.dateNotices = dateNotices;
     }
 
-    public Date getDateNoticesTransfer() {
+    public LocalDate getDateNoticesTransfer() {
         return dateNoticesTransfer;
     }
 
-    public void setDateNoticesTransfer(Date dateNoticesTransfer) {
+    public void setDateNoticesTransfer(LocalDate dateNoticesTransfer) {
         this.dateNoticesTransfer = dateNoticesTransfer;
     }
 
@@ -52,18 +58,18 @@ public class Notices {
         this.dateNoticesIn = dateNoticesIn;
     }
 
-    public Date getControlDate() {
+    public LocalDate getControlDate() {
         return controlDate;
     }
 
-    public void setControlDate(Date controlDate) {
+    public void setControlDate(LocalDate controlDate) {
         this.controlDate = controlDate;
     }
 
     public Notices() {
     }
 
-    public Notices(Date dateNotices, Date dateNoticesTransfer, String dateNoticesIn, Date controlDate) {
+    public Notices(LocalDate dateNotices, LocalDate dateNoticesTransfer, String dateNoticesIn, LocalDate controlDate) {
         this.dateNotices = dateNotices;
         this.dateNoticesTransfer = dateNoticesTransfer;
         this.dateNoticesIn = dateNoticesIn;

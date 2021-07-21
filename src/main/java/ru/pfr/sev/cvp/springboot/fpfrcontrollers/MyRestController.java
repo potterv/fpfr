@@ -10,8 +10,9 @@ import ru.pfr.sev.cvp.service.*;
 
 import java.util.List;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-@RestController
+
 @RequestMapping("/api")
+@Deprecated
 public class MyRestController {
 @Autowired
     private EmployeerService employerService;
@@ -28,19 +29,19 @@ public class MyRestController {
         return employeer;
      }
 
-//    @CrossOrigin(origins = "*")
-    @PostMapping("/employeers")
+    @CrossOrigin(origins = "*")
+    @PostMapping(value ="/employeers")
      public  Employeer addNewEmployeer (@RequestBody Employeer employeer){
         employerService.saveEmployeer(employeer);
         return employeer;
     }
-//    @CrossOrigin(origins = "*")
-    @PutMapping("/employeers")
+    @CrossOrigin(origins = "*")
+    @PutMapping(value ="/employeers")
     public Employeer updateEmployeer(@RequestBody Employeer employeer){
         employerService.saveEmployeer(employeer);
         return employeer;
     }
-//    @CrossOrigin(origins = "*")
+    @CrossOrigin(origins = "*")
     @DeleteMapping("/employeers/{id}")
     public void deleteEmployeer (@PathVariable int id){
         employerService.deleteEmployeer(id);

@@ -2,33 +2,41 @@ package ru.pfr.sev.cvp.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import ru.pfr.sev.cvp.dao.EmployeerDAO;
-import ru.pfr.sev.cvp.fpfr.db.entity.Employeer;
-import javax.transaction.Transactional;
-import java.util.List;
 
+import ru.pfr.sev.cvp.fpfr.db.entity.Employeer;
+import ru.pfr.sev.cvp.springdatejpa.EmployeerRepository;
+
+
+import javax.swing.text.html.Option;
+import java.util.List;
+import java.util.Optional;
+@Deprecated
 @Service
 public class EmployeerServiceImpl implements EmployeerService {
-@Autowired
-    private EmployeerDAO employeerDAO;
+    @Autowired
+    private EmployeerRepository employeerRepository;
+
     @Override
-    @Transactional
-    public List<Employeer> getAllEmployeers(){return employeerDAO.getAllEmployeer();}
+    public List<Employeer> getAllEmployeers(){return employeerRepository.findAll();}
 
     @Override
     public void saveEmployeer(Employeer employer) {
-        employeerDAO.saveEmployeer(employer);
+        employeerRepository.save(employer);
     }
 
     @Override
     public Employeer getEmployeer(int id) {
-
-        return employeerDAO.getEmployer(id);
+        Employeer employeer =null;
+        Optional<Employeer> optionl = employeerRepository.findById(id);
+        if (optionl.isPresent()){
+            employeer = optionl.get();
+        }
+        return employeer;
     }
 
     @Override
     public void deleteEmployeer(int id) {
-        employeerDAO.deleteEmployeer(id);
+       employeerRepository.deleteById(id);
     }
 
 
