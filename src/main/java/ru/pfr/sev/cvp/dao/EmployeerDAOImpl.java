@@ -23,7 +23,7 @@ public class EmployeerDAOImpl implements EmployeerDAO {
     public List<Employeer> getAllEmployeer() {
   //Использование hibernate
         Session session = entityManager.unwrap(Session.class);
-        Query<Employeer> query = session.createQuery("from Employeer ",Employeer.class);
+        Query<Employeer> query = session.createQuery("from Employeer ", Employeer.class);
         List<Employeer> allEmployeer = query.getResultList();
 
 // используется чистый java jpa

@@ -5,13 +5,9 @@ import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
 import org.junit.jupiter.api.Test;
 import ru.pfr.sev.cvp.fpfr.db.entity.onetomany.Intelligence;
-import ru.pfr.sev.cvp.fpfr.db.entity.onetoone.Apendix;
 import ru.pfr.sev.cvp.fpfr.db.entity.onetoone.Notices;
 
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -65,7 +61,7 @@ public class testCrudDateToEntity {
                 .configure("hibernate.cfg.xml")
                 .addAnnotatedClass(Employeer.class)
                 .addAnnotatedClass(Notices.class)
-                .addAnnotatedClass(Apendix.class)
+                .addAnnotatedClass(ru.pfr.sev.cvp.fpfr.db.entity.onetoone.Apendix.class)
                  .buildSessionFactory();
         Session session = null;
         try {
@@ -77,7 +73,7 @@ public class testCrudDateToEntity {
                     LocalDate.parse("2021-04-16"));
             employeer.setEmpNotices(notices);
 
-            Apendix apendix = new Apendix(
+            ru.pfr.sev.cvp.fpfr.db.entity.onetoone.Apendix apendix = new ru.pfr.sev.cvp.fpfr.db.entity.onetoone.Apendix(
                     LocalDate.parse("2021-04-16"),
                     LocalDate.parse("2021-04-16"),
                     "-",
@@ -103,7 +99,7 @@ public class testCrudDateToEntity {
                 .configure("hibernate.cfg.xml")
                 .addAnnotatedClass(Employeer.class)
                 .addAnnotatedClass(Notices.class)
-                .addAnnotatedClass(Apendix.class)
+                .addAnnotatedClass(ru.pfr.sev.cvp.fpfr.db.entity.onetoone.Apendix.class)
                 .addAnnotatedClass(Intelligence.class)
                 .buildSessionFactory();
         Session session = null;
@@ -116,7 +112,7 @@ public class testCrudDateToEntity {
                     LocalDate.parse("2021-04-16"));
             employeer.setEmpNotices(notices);
 
-            Apendix apendix = new Apendix(LocalDate.parse("2021-04-16"),
+            ru.pfr.sev.cvp.fpfr.db.entity.onetoone.Apendix apendix = new ru.pfr.sev.cvp.fpfr.db.entity.onetoone.Apendix(LocalDate.parse("2021-04-16"),
                     LocalDate.parse("2021-04-16"),
                     "-",
                     "-");

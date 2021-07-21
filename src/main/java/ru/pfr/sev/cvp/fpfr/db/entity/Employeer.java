@@ -30,7 +30,7 @@ public class Employeer {
 
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "a_id")
-    private Apendix empApendix;
+    private ru.pfr.sev.cvp.fpfr.db.entity.onetoone.Apendix empApendix;
 
     @OneToMany(cascade = CascadeType.ALL)
     @JoinColumn(name = "e_id")
@@ -86,11 +86,11 @@ public class Employeer {
 
     }
 
-    public Apendix getEmpApendix() {
+    public ru.pfr.sev.cvp.fpfr.db.entity.onetoone.Apendix getEmpApendix() {
         return empApendix;
     }
 
-    public void setEmpApendix(Apendix empApendix) {
+    public void setEmpApendix(ru.pfr.sev.cvp.fpfr.db.entity.onetoone.Apendix empApendix) {
         this.empApendix = empApendix;
     }
 

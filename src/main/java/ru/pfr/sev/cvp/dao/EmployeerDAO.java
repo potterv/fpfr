@@ -9,6 +9,6 @@ import java.util.List;
 public interface EmployeerDAO {
     public List<Employeer> getAllEmployeer();
     public void saveEmployeer(Employeer employeer);
-    public  Employeer getEmployer(int id);
+    public Employeer getEmployer(int id);
     public void deleteEmployeer(int id);
 }

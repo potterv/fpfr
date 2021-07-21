@@ -7,10 +7,9 @@ import ru.pfr.sev.cvp.fpfr.db.entity.Employeer;
 import ru.pfr.sev.cvp.springdatejpa.EmployeerRepository;
 
 
-import javax.swing.text.html.Option;
 import java.util.List;
 import java.util.Optional;
-@Deprecated
+//@Deprecated
 @Service
 public class EmployeerServiceImpl implements EmployeerService {
     @Autowired
@@ -18,6 +17,7 @@ public class EmployeerServiceImpl implements EmployeerService {
 
     @Override
     public List<Employeer> getAllEmployeers(){return employeerRepository.findAll();}
+
 
     @Override
     public void saveEmployeer(Employeer employer) {
@@ -38,6 +38,8 @@ public class EmployeerServiceImpl implements EmployeerService {
     public void deleteEmployeer(int id) {
        employeerRepository.deleteById(id);
     }
+
+
 
 
 }
