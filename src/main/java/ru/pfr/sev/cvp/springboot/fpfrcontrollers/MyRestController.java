@@ -18,7 +18,8 @@ public class MyRestController {
     private EmployeerService employerService;
     @Autowired
     private ApendixService apendixService;
-//        @CrossOrigin(origins = "*")
+
+    //        @CrossOrigin(origins = "*")
     @GetMapping(value = "/employeers")
     public List<Employeer> showAllEmployers() {
         List<Employeer> allEmployeers = employerService.getAllEmployeers();
@@ -46,6 +47,9 @@ public class MyRestController {
         employerService.saveEmployeer(employeer);
         return employeer;
     }
+
+    //        @CrossOrigin(origins = "*")
+    @CrossOrigin(origins = "http://localhost:3000")
     @PutMapping(value = "/apendixs")
     public Apendix updateApendix(@RequestBody Apendix apendix) {
         apendixService.saveApendix(apendix);

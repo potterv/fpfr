@@ -1,5 +1,3 @@
-
-
 import React from 'react';
 import UserService from '../../../../../fpfr/react/fpfr/src/services/UserService';
 
@@ -125,7 +123,7 @@ class EmployeerComponent extends React.Component {
                                     <td><input type="text" maxLength="4" size="2" id="protocol" name="protocol" value={employeer.empApendix.protockol}/></td>
 
                                     {/*<td><input type="submit" className="btn btn-info" name="save" value="СОХРАНИТЬ"/></td>*/}
-                                    <td> <button className="btn btn-info" name="save" onClick = {this.render}> СОХРАНИТЬ </button> </td>
+                                    <td> <button className="btn btn-info" name="save" onChange = {this.render}> СОХРАНИТЬ </button> </td>
                                 </tr>
                         )
 
@@ -138,6 +136,8 @@ class EmployeerComponent extends React.Component {
                 </div>
                 </form>
             </div>
+
+
 
         )
     }
