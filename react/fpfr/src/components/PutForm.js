@@ -1,11 +1,14 @@
 import React,{Component} from  'react'
-import axios from 'axios'
-class PostForm extends Component{
+
+import axios from "axios";
+
+class PutForm extends Component{
 
     constructor(props) {
         super(props);
         this.state={
             id:'',
+
             dateFact: '',
             dateAct: '',
             primechanie: '',
@@ -21,7 +24,7 @@ class PostForm extends Component{
 
     submitHandler = e =>{
         e.preventDefault();
-        console.log(this.state)
+        console.log(this.state);
         axios.put('http://localhost:8080/apendixs',this.state, {
             method: 'PUT',
             headers: {
@@ -38,18 +41,21 @@ class PostForm extends Component{
                 console.log(error)
             })
     }
+    updateData = (value) => {
+        this.setState({ id: value })
+    }
 
     render() {
-        const { id, dateFact,dateAct, primechanie, protockol} = this.state;
+        const { dateFact,dateAct, primechanie, protockol} = this.state;
 
         return(
             <div>
                 <form onSubmit={this.submitHandler}>
 
-                    <div>
-                        <input type="text" name="id" value={id}
-                               onChange={this.changeHandler}/>
-                    </div>
+                    {/*<div>*/}
+                    {/*    <input type="text" name="id" value={id}*/}
+                    {/*           onChange={this.changeHandler}/>*/}
+                    {/*</div>*/}
                     <div>
                         <input type="text" name="dateFact" value={dateFact}
                                onChange={this.changeHandler}/>
@@ -66,11 +72,11 @@ class PostForm extends Component{
                         <input type="text" name="protockol" value={protockol}
                                onChange={this.changeHandler}/>
                     </div>
-                    <button type="submit">Submit</button>
+                    <button className="btn btn-info" type="submit">Обновить</button>
                 </form>
             </div>
         )
     }
 }
 
-export default PostForm
+export default PutForm

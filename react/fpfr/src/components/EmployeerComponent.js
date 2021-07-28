@@ -1,6 +1,7 @@
 import React from 'react';
-import UserService from '../../../../../fpfr/react/fpfr/src/services/UserService';
 
+import AllEmployeerService from "../services/AllEmployeerService";
+import PutForm from "./PutForm";
 class EmployeerComponent extends React.Component {
 
     constructor(props){
@@ -8,22 +9,28 @@ class EmployeerComponent extends React.Component {
         this.state = {
             employeers:[]
 
-
         }
 
     }
 
+
+
     componentDidMount(){
-        UserService.getUsers().then((response) => {
+        AllEmployeerService.getEmployeers().then((response) => {
             this.setState({ employeers: response.data})
         });
     }
 
     render (){
+
+
+
         return (
+
+
             <div>
                 <h1 className = "text-center"> СПИСОК РАБОТОДАТЕЛЕЙ</h1>
-                <form method="post" action="">
+                <form onSubmit={this.submitHandler}>
                 <div className="container-fluid">
                 <table className = "table table-striped table-bordered table-hover">
                     <thead class="thead-light">
@@ -100,7 +107,7 @@ class EmployeerComponent extends React.Component {
                                     <td>{employeer.empIntelligence.map(
                                         empin =>
                                             <tr key={empin.id}>
-                                                <td>
+                                                <td >
                                                     {empin.kolzl}
                                                 </td>
                                             </tr>
@@ -112,18 +119,51 @@ class EmployeerComponent extends React.Component {
                                     <td>{employeer.empNotices.dateNoticesIn}</td>
                                     <td>{employeer.empNotices.controlDate}</td>
 
-                                    <td><input type="text" id="fact_act_date" name="fact_act_date" value={employeer.empApendix.dateFact+" "+employeer.empApendix.id}/></td>
-                                    <td><input type="text" id="act_date" name="act_date" value={employeer.empApendix.dateAct}/></td>
-                                    <td><textarea name="comments" rows="1" cols="25">{employeer.empApendix.primechanie}</textarea> </td>
+
+                                    <td>
+
+                                        {/*<input type="text" id="fact_act_date" name="fact_act_date" value={employeer.empApendix.dateFact+" "+employeer.empApendix.id}/>*/}
+                                        {
+
+
+                                        }
+                                        {employeer.empApendix.dateFact}
+                                    </td>
+                                    <td>
+
+                                        {/*<input type="text" id="act_date" name="act_date" value={employeer.empApendix.dateAct}/>*/}
+                                        {employeer.empApendix.dateAct}
+                                    </td>
+                                    <td>
+
+                                        {/*/!*<textarea name="comments" rows="1" cols="25"></textarea>*!/*/}
+                                        {employeer.empApendix.primechanie}
+                                    </td>
                                     <td></td>
                                     <td></td>
                                     <td></td>
                                     <td></td>
                                     <td></td>
-                                    <td><input type="text" maxLength="4" size="2" id="protocol" name="protocol" value={employeer.empApendix.protockol}/></td>
+                                    <td>
+
+                                        {/*<input type="text" maxLength="4" size="2" id="protocol" name="protocol" value={employeer.empApendix.protockol}/>*/}
+                                        {employeer.empApendix.protockol}
+                                    </td>
 
                                     {/*<td><input type="submit" className="btn btn-info" name="save" value="СОХРАНИТЬ"/></td>*/}
-                                    <td> <button className="btn btn-info" name="save" onChange = {this.render}> СОХРАНИТЬ </button> </td>
+                                    <td>
+                                        {/*<button className="btn btn-info" type="submit"> Обновить </button> */}
+                                        <PutForm updateData={this.updateData}/>
+                                        {
+                                            // this.props.updateData('20')
+                                            // PutForm.this.setState( {id:'20'})
+                                        }
+
+                                        {/*{this.props.employeers.map(employeer=>{employ})}*/}
+
+
+                                    </td>
+
                                 </tr>
                         )
 
@@ -135,6 +175,7 @@ class EmployeerComponent extends React.Component {
                 </table>
                 </div>
                 </form>
+
             </div>
 
 
