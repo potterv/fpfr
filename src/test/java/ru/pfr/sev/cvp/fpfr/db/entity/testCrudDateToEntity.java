@@ -11,6 +11,7 @@ import ru.pfr.sev.cvp.fpfr.db.entity.onetoone.Notices;
 import ru.pfr.sev.cvp.fpfr.db.entity.onetoone.Apendix;
 
 import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -77,7 +78,7 @@ public class testCrudDateToEntity {
             employeer.setEmpNotices(notices);
 
            Apendix apendix = new Apendix(
-                    LocalDate.parse("2021-04-16"),
+                    "2021-04-16",
                     "2021-04-16",
                     "-",
                     "-");
@@ -115,7 +116,7 @@ public class testCrudDateToEntity {
                     LocalDate.parse("2021-04-16"));
             employeer.setEmpNotices(notices);
 
-            Apendix apendix = new Apendix(LocalDate.parse("2021-04-16"),
+            Apendix apendix = new Apendix("2021-04-16",
                     "2021-04-16",
                     "-",
                     "-");
@@ -125,8 +126,8 @@ public class testCrudDateToEntity {
 //                Intelligence intelligence = new Intelligence("1","2","3",10);
 //                Intelligence intelligence1 = new Intelligence("4","5","6",12);
 
-                employeer.addIntaligence(new Intelligence("5","1","7",18));
-                employeer.addIntaligence(new Intelligence("7","8","7",14));
+                employeer.addIntaligence(new Intelligence("5","1","7","18"));
+                employeer.addIntaligence(new Intelligence("7","8","7","14"));
 
 
 
@@ -161,7 +162,7 @@ public class testCrudDateToEntity {
         Session session = null;
         XLSParser xlsParser =new XLSParser();
         List<Organization>listOrg = new ArrayList();
-        listOrg = xlsParser.parsingFileToOrgList("D:\\!!!DOCUMENTS\\ФИН. САНКЦИИ ПО СВЕРКЕ (УВЕДОМЛЕНИЯ)\\Таблица рег-новая1.xls");
+        listOrg = xlsParser.parsingFileToOrgList("D:\\!!!DOCUMENTS\\ФИН. САНКЦИИ ПО СВЕРКЕ (УВЕДОМЛЕНИЯ)\\Таблица рег-новая1____для разработки.xls");
 
 
 
@@ -173,14 +174,16 @@ public class testCrudDateToEntity {
 
              organization.getArrayOfNotification().forEach(System.out::println);
 
-            Notices notices = new Notices(LocalDate.parse(organization.getArrayOfNotification().get(0).get(0)),
-                                          LocalDate.parse(organization.getArrayOfNotification().get(0).get(1)),
-                                            organization.getArrayOfNotification().get(0).get(2),
-                                          LocalDate.parse(organization.getArrayOfNotification().get(0).get(3)));
+
+            Notices notices = new Notices(checkDate(organization.getArrayOfNotification().get(0).get(0)),
+                                          checkDate(organization.getArrayOfNotification().get(0).get(1)) ,
+                                           organization.getArrayOfNotification().get(0).get(2),
+                                          checkDate(organization.getArrayOfNotification().get(0).get(3)));
             employeer.setEmpNotices(notices);
             organization.getArrayOfAppendix().forEach(System.out::println);
 
-            Apendix apendix = new Apendix(LocalDate.parse(organization.getArrayOfAppendix().get(0).get(0)),
+//            LocalDate localDate = LocalDate.parse(checkDate(organization.getArrayOfAppendix().get(0).get(0)));
+            Apendix apendix = new Apendix(organization.getArrayOfAppendix().get(0).get(0),
                     organization.getArrayOfAppendix().get(0).get(1),
                     organization.getArrayOfAppendix().get(0).get(2),
                     organization.getArrayOfAppendix().get(0).get(3));
@@ -192,12 +195,14 @@ public class testCrudDateToEntity {
 
             for (List<String> listIntrl:organization.getArrayOfIntelligence()
                  ) {
-                System.out.println(listIntrl.get(0)+listIntrl.get(1)+listIntrl.get(2)+listIntrl.get(3));
+                organization.getArrayOfIntelligence().forEach(System.out::println);
+
                 employeer.addIntaligence(new Intelligence(organization.getArrayOfIntelligence().get(0).get(0),
                         organization.getArrayOfIntelligence().get(0).get(1),
                         organization.getArrayOfIntelligence().get(0).get(2),
-                        Integer.getInteger(organization.getArrayOfIntelligence().get(0).get(3))));
+                        organization.getArrayOfIntelligence().get(0).get(3)));
             }
+
 //            employeer.addIntaligence(new Intelligence("5","1","7",18));
 //            employeer.addIntaligence(new Intelligence("7","8","7",14));
 
@@ -224,5 +229,19 @@ public class testCrudDateToEntity {
     }
 
 
+    private LocalDate checkDate(String s){
+    if (s.equals("null")) return null;
+    else return  LocalDate.parse(s, DateTimeFormatter.ofPattern("yyyy-MM-dd"));
+    }
+
+    private Integer checkInt(String s){
+        if (s.equals("null")) return null;
+        else return  Integer.getInteger(s);
+    }
+
+    @Test
+    public void testNull(){
+        checkDate("null");
+    }
 
 }

@@ -21,7 +21,7 @@ public class Intelligence {
     private String i_year;
 
     @Column(name = "kolzl")
-    private int kolzl;
+    private String kolzl;
 
 //    private  int e_id;
 //     @Column(name = "e_id")
@@ -65,18 +65,18 @@ public class Intelligence {
         this.i_year = i_year;
     }
 
-    public int getKolzl() {
+    public String getKolzl() {
         return kolzl;
     }
 
-    public void setKolzl(int kolzl) {
+    public void setKolzl(String kolzl) {
         this.kolzl = kolzl;
     }
 
     public Intelligence() {
     }
 
-    public Intelligence(String type, String month, String i_year, int kolzl) {
+    public Intelligence(String type, String month, String i_year, String kolzl) {
         this.type = type;
         this.month = month;
         this.i_year = i_year;

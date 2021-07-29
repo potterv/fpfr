@@ -11,9 +11,9 @@ class Organization:Comparable<Organization>, Serializable {
 
 
     //Временные массивы для заполнения данных
-    var tempArray1: MutableList<String> = mutableListOf<String>("-","-","-","-")
-    var tempArray2: MutableList<String> = mutableListOf<String>("-","-","-","-")
-    var tempArray3: MutableList<String> = mutableListOf<String>("-","-","-","-")
+    var tempArray1: MutableList<String> = mutableListOf<String>("null","null","null","null")
+    var tempArray2: MutableList<String> = mutableListOf<String>("null","null","null","null")
+    var tempArray3: MutableList<String> = mutableListOf<String>("null","null","null","null")
 
     //Основные массивы с данными
      val arrayOfIntelligence = arrayListOf(listOf<String>())
@@ -56,22 +56,22 @@ class Organization:Comparable<Organization>, Serializable {
                     3 -> {
                         if (e != null) {
                             tempArray1[0] = e
-                        } else tempArray1[0] = "-"
+                        } else tempArray1[0] = "null"
                     }
                     4 -> {
                         if (e != null) {
                             tempArray1[1] = e
-                        } else tempArray1[1] = "-"
+                        } else tempArray1[1] = "null"
                     }
                     5 -> {
                         if (e != null) {
                             tempArray1[2] = e
-                        } else tempArray1[2] = "-"
+                        } else tempArray1[2] = "null"
                     }
                     6 -> {
                         if (e != null) {
                             tempArray1[3] = e
-                        } else tempArray1[3] = "-"
+                        } else tempArray1[3] = "null"
                     }
                 }
             }
@@ -80,22 +80,22 @@ class Organization:Comparable<Organization>, Serializable {
                     7 -> {
                         if (e != null) {
                             tempArray2[0] = e
-                        } else tempArray2[0] = "-"
+                        } else tempArray2[0] = "null"
                     }
                     8 -> {
                         if (e != null) {
                             tempArray2[1] = e
-                        } else tempArray2[1] = "-"
+                        } else tempArray2[1] = "null"
                     }
                     9 -> {
                         if (e != null) {
                             tempArray2[2] = e
-                        } else tempArray2[2] = "-"
+                        } else tempArray2[2] = "null"
                     }
                     10 -> {
                         if (e != null) {
                             tempArray2[3] = e
-                        } else tempArray2[3] = "-"
+                        } else tempArray2[3] = "null"
                     }
                 }
             }
@@ -104,22 +104,22 @@ class Organization:Comparable<Organization>, Serializable {
                     11 -> {
                         if (e != null) {
                             tempArray3[0] = e
-                        } else tempArray3[0] = "-"
+                        } else tempArray3[0] = "null"
                     }
                     12 -> {
                         if (e != null) {
                             tempArray3[1] = e
-                        } else tempArray3[1] = "-"
+                        } else tempArray3[1] = "null"
                     }
                     13 -> {
                         if (e != null) {
                             tempArray3[2] = e
-                        } else tempArray3[2] = "-"
+                        } else tempArray3[2] = "null"
                     }
                     14 -> {
                         if (e != null) {
                             tempArray3[3] = e
-                        } else tempArray3[3] = "-"
+                        } else tempArray3[3] = "null"
                     }
                 }
             }
@@ -154,7 +154,7 @@ class Organization:Comparable<Organization>, Serializable {
             arrayOfNotification.add(tempArray2)
 
         // --Трейтий временный
-        if (arrayOfAppendix[0].isEmpty())  // Если первый элимент пуст добавить вместо него данные
+        if (arrayOfAppendix[0].isNullOrEmpty())  // Если первый элимент пуст добавить вместо него данные
             arrayOfAppendix[0] = tempArray3 //Сделано для избавления от  пустых масивов
         else
             arrayOfAppendix.add(tempArray3)
@@ -173,5 +173,6 @@ class Organization:Comparable<Organization>, Serializable {
     override fun compareTo(o:Organization):Int{
         return regNumber.compareTo(o.regNumber)
     }
+
 
 }
