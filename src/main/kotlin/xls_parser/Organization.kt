@@ -1,22 +1,24 @@
 package ru.pfr.modules.xls_parser_fin_monitor
 
+import org.apache.poi.ss.usermodel.Cell
 import java.io.IOException
 import java.io.Serializable
 
-class Organization{
+class Organization:Comparable<Organization>, Serializable {
 
     var regNumber:String = ""
     var orgName:String = ""
 
+
     //Временные массивы для заполнения данных
-    var tempArray1 = mutableListOf<String>()
-    var tempArray2 = mutableListOf<String>()
-    var tempArray3 = mutableListOf<String>()
+    var tempArray1: MutableList<String> = mutableListOf<String>("-","-","-","-")
+    var tempArray2: MutableList<String> = mutableListOf<String>("-","-","-","-")
+    var tempArray3: MutableList<String> = mutableListOf<String>("-","-","-","-")
 
     //Основные массивы с данными
-    private val arrayOfIntelligence = arrayListOf(listOf<String>())
-    private val arrayOfNotification = arrayListOf(listOf<String>())
-    private val arrayOfAppendix     = arrayListOf(listOf<String>())
+     val arrayOfIntelligence = arrayListOf(listOf<String>())
+     val arrayOfNotification = arrayListOf(listOf<String>())
+     val arrayOfAppendix     = arrayListOf(listOf<String>())
 
     constructor()
 
@@ -36,7 +38,7 @@ class Organization{
                 if (e != null) {
                     tempArray2.add(e)
                 } else tempArray2.add("null")
-        }
+            }
             3 ->{
                 if (e != null) {
                     tempArray3.add(e)
@@ -47,11 +49,93 @@ class Organization{
             """.trimIndent())
         }
     }
+    fun addToTempArrays(e:String, numArray:Int, cell: Cell){
+        when (numArray) {
+            1 -> {
+                when (cell.columnIndex) {
+                    3 -> {
+                        if (e != null) {
+                            tempArray1[0] = e
+                        } else tempArray1[0] = "-"
+                    }
+                    4 -> {
+                        if (e != null) {
+                            tempArray1[1] = e
+                        } else tempArray1[1] = "-"
+                    }
+                    5 -> {
+                        if (e != null) {
+                            tempArray1[2] = e
+                        } else tempArray1[2] = "-"
+                    }
+                    6 -> {
+                        if (e != null) {
+                            tempArray1[3] = e
+                        } else tempArray1[3] = "-"
+                    }
+                }
+            }
+            2 -> {
+                when (cell.columnIndex) {
+                    7 -> {
+                        if (e != null) {
+                            tempArray2[0] = e
+                        } else tempArray2[0] = "-"
+                    }
+                    8 -> {
+                        if (e != null) {
+                            tempArray2[1] = e
+                        } else tempArray2[1] = "-"
+                    }
+                    9 -> {
+                        if (e != null) {
+                            tempArray2[2] = e
+                        } else tempArray2[2] = "-"
+                    }
+                    10 -> {
+                        if (e != null) {
+                            tempArray2[3] = e
+                        } else tempArray2[3] = "-"
+                    }
+                }
+            }
+            3 -> {
+                when (cell.columnIndex) {
+                    11 -> {
+                        if (e != null) {
+                            tempArray3[0] = e
+                        } else tempArray3[0] = "-"
+                    }
+                    12 -> {
+                        if (e != null) {
+                            tempArray3[1] = e
+                        } else tempArray3[1] = "-"
+                    }
+                    13 -> {
+                        if (e != null) {
+                            tempArray3[2] = e
+                        } else tempArray3[2] = "-"
+                    }
+                    14 -> {
+                        if (e != null) {
+                            tempArray3[3] = e
+                        } else tempArray3[3] = "-"
+                    }
+                }
+            }
+
+            else -> throw IOException("""
+                Ошибка в добавлении временного массива
+            """.trimIndent())
+        }
+    }
+
+
 
     fun newTempArrays(){
-        tempArray1 = mutableListOf<String>()
-        tempArray2 = mutableListOf<String>()
-        tempArray3 = mutableListOf<String>()
+        tempArray1 = mutableListOf<String>("null","null","null","null")
+        tempArray2 = mutableListOf<String>("null","null","null","null")
+        tempArray3 = mutableListOf<String>("null","null","null","null")
     }
 
     //Заменяет все три функции одной
@@ -84,6 +168,10 @@ class Organization{
 |   2.- $arrayOfNotification 
 |   3.- $arrayOfAppendix
 |""".trimMargin()
+    }
+
+    override fun compareTo(o:Organization):Int{
+        return regNumber.compareTo(o.regNumber)
     }
 
 }

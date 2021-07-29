@@ -6,7 +6,7 @@ import java.util.*
 
 fun main(args: Array<String>) {
     val p = XLSParser()
-        .parsingFileToOrgList("F:\\Programms\\different\\java\\modulForSpring\\in\\reg.xls")
+        .parsingFileToOrgList("D:\\!!!DOCUMENTS\\ФИН. САНКЦИИ ПО СВЕРКЕ (УВЕДОМЛЕНИЯ)\\Таблица рег-новая1.xls")
 
     for (o in p){
            println(o)

@@ -20,7 +20,7 @@ public class Apendix {
     private LocalDate dateFact;
 
     @Column(name = "date_act")
-    private LocalDate dateAct;
+    private String dateAct;
 
     @Column(name = "primechanie")
     private String primechanie;
@@ -52,11 +52,11 @@ public class Apendix {
         this.dateFact = dateFact;
     }
 
-    public LocalDate getDateAct() {
+    public String getDateAct() {
         return dateAct;
     }
 
-    public void setDateAct(LocalDate dateAct) {
+    public void setDateAct(String dateAct) {
         this.dateAct = dateAct;
     }
 
@@ -79,7 +79,7 @@ public class Apendix {
     public Apendix() {
     }
 
-    public Apendix( LocalDate dateFact, LocalDate dateAct, String primechanie, String protockol) {
+    public Apendix(LocalDate dateFact, String dateAct, String primechanie, String protockol) {
 //      this.regNumApendix = regNumApendix;
         this.dateFact = dateFact;
         this.dateAct = dateAct;

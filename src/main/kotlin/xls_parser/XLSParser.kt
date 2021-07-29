@@ -2,13 +2,17 @@ package ru.pfr.modules.xls_parser_fin_monitor
 
 import org.apache.poi.hssf.usermodel.HSSFRow
 import org.apache.poi.hssf.usermodel.HSSFWorkbook
-import java.io.FileInputStream
 import org.apache.poi.ss.usermodel.Cell
 import org.apache.poi.ss.usermodel.CellType
 import org.apache.poi.ss.usermodel.DateUtil
 import org.apache.poi.ss.util.NumberToTextConverter
 import java.io.File
+import java.io.FileInputStream
 import java.io.IOException
+import java.text.DateFormat
+import java.text.SimpleDateFormat
+import java.util.*
+
 
 /**
  * Парсер, парсит файлы xls
@@ -16,7 +20,7 @@ import java.io.IOException
 class XLSParser {
 
     private var numberOfHeaderIterator = 0  // Для пропуска шапки
-    private var numberOfHeader = 1 // Кол-во строк шапки таблицы
+    private var numberOfHeader = 2 // Кол-во строк шапки таблицы
 
     /**
      * Создание нового обьекта
@@ -29,7 +33,7 @@ class XLSParser {
      * @param fileName
      * @return orgList:MutableList<Organization>
      */
-    fun parsingFileToOrgList(fileName:String):MutableList<Organization>{
+    fun parsingFileToOrgList(fileName: String):MutableList<Organization>{
         //---- Проверка существует ли файл и его расширение ----
         val f = File(fileName)
         if (f.isFile.and(fileName.endsWith(".xls")))
@@ -74,12 +78,11 @@ class XLSParser {
                                     isExist = true
                                 }
                             }
-                            if (org.regNumber.isNotEmpty() && org.regNumber!= checkCellType(cell)){ //Избавился от пустого попадания
+                            if (org.regNumber.isNotEmpty() && org.regNumber != checkCellType(cell)) { //Избавился от пустого попадания
                                 if (!isExist) { //Если такой организации нет добавить
                                     list.add(org)
                                     org = Organization()
-                                }
-                                else // Если организацие есть, продолжить с новой
+                                } else // Если организацие есть, продолжить с новой
                                 {
                                     isExist = false
                                     org = Organization()
@@ -93,9 +96,9 @@ class XLSParser {
                     2 -> org.orgName = checkCellType(cell)
 
                     // Заполнение временных массивов
-                    3,4,5,6   -> org.addToTempArrays(checkCellType(cell), 1)
-                    7,8,9,10  -> org.addToTempArrays(checkCellType(cell), 2)
-                    11,12,13,14 -> org.addToTempArrays(checkCellType(cell), 3)
+                    3, 4, 5, 6 -> org.addToTempArrays(checkCellType(cell), 1, cell)
+                    7, 8, 9, 10 -> org.addToTempArrays(checkCellType(cell), 2, cell)
+                    11, 12, 13, 14 -> org.addToTempArrays(checkCellType(cell), 3, cell)
                     else -> continue
 
                 }
@@ -117,19 +120,22 @@ class XLSParser {
      *         null если другой тип;
      * @exception regNumber отсутствует
      * */
-    private fun checkCellType(cell:Cell):String{
+    private fun checkCellType(cell: Cell):String{
         return when (cell.cellType) {
             CellType.STRING -> cell.stringCellValue
             CellType.NUMERIC -> {
                 if (DateUtil.isCellDateFormatted(cell)) {
-                    cell.toString()
+                    val myDate: Date = cell.dateCellValue
+                    val formatter: DateFormat = SimpleDateFormat("yyyy-MM-dd")
+                    val result = formatter.format(myDate)
+                    result.toString()
                 } else {
                     NumberToTextConverter.toText(cell.numericCellValue)
                 }
             }
             CellType.BOOLEAN -> cell.booleanCellValue.toString()
             CellType.BLANK -> {
-                if (cell.columnIndex.equals(1)){
+                if (cell.columnIndex.equals(1)) {
                     throw IOException("No reg name!!! In index ->${cell.columnIndex}, in row ->${cell.rowIndex},  is an error type")
                 } else "null"
             }
