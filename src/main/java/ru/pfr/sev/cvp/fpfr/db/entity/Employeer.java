@@ -45,7 +45,7 @@ public class Employeer {
     }
 
     public String getRegNum() {
-        return regNum;
+        return this.regNum;
     }
 
     public void setRegNum(String regNum) {
